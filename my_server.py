@@ -34,7 +34,7 @@ def submit_form():
     if request.method == 'POST':
     	try:
     		data = request.form.to_dict()  # obtenemos los datos en formato de dictionary
-	        print(data)
+	        #print(data)
 	        write_to_file(data, 'database.txt')
 	        write_to_csv(data, 'database.csv')
 	        return redirect('/thank_you.html')
