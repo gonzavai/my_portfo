@@ -32,14 +32,14 @@ def html_page(page_name):
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
     if request.method == 'POST':
-    	try:
-    		data = request.form.to_dict()  # obtenemos los datos en formato de dictionary
-	        #print(data)
-	        write_to_file(data, 'database.txt')
-	        write_to_csv(data, 'database.csv')
-	        return redirect('/thank_you.html')
-    	except Exception as e:
-	        return 'Something went wrong. Did not save to database!'
+    	#try:
+		data = request.form.to_dict()  # obtenemos los datos en formato de dictionary
+        print(data)
+        write_to_file(data, 'database.txt')
+        write_to_csv(data, 'database.csv')
+        return redirect('/thank_you.html')
+    	#except Exception as e:
+	        #return 'Something went wrong. Did not save to database!'
 	else:
         return 'Something went wrong. Try again!'
 
