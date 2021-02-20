@@ -32,41 +32,38 @@ def html_page(page_name):
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
     if request.method == 'POST':
-    	try:
-    		data = request.form.to_dict()  # obtenemos los datos en formato de dictionary
-	        #print(data)
-	        write_to_file(data, 'database.txt')
-	        write_to_csv(data, 'database.csv')
-	        return redirect('/thank_you.html')
-    	except Exception as e:
-	        return 'Something went wrong. Did not save to database!'
-	else:
+        data = request.form.to_dict()  # obtenemos los datos en formato de dictionary
+        print(data)
+        write_to_file(data, 'database.txt')
+        write_to_csv(data, 'database.csv')
+        return redirect('/thank_you.html')
+    else:
         return 'Something went wrong. Try again!'
 
 
 def write_to_file(data, fileName):
-	with open(fileName, 'a', encoding='utf-8') as file:
-		name = data['name']
-		email = data['email']
-		subject = data['subject']
-		message = data['message']
+    with open(fileName, 'a', encoding='utf-8') as file:
+        name = data['name']
+        email = data['email']
+        subject = data['subject']
+        message = data['message']
+        file.write(f'{name}//{email}//{subject}//{message}\n')
 
-		file.write(f'{name}//{email}//{subject}//{message}\n')
 
 def read_from_file(fileName):
-	with open(fileName, 'r', encoding='utf-8') as file:
-		return file.readlines()
+    with open(fileName, 'r', encoding='utf-8') as file:
+        return file.readlines()
 
 
 def write_to_csv(data, fileName):
-	with open(fileName, 'a', newline='', encoding='utf-8') as database:
-		name = data['name']
-		email = data['email']
-		subject = data['subject']
-		message = data['message']
+    with open(fileName, 'a', newline='', encoding='utf-8') as database:
+        name = data['name']
+        email = data['email']
+        subject = data['subject']
+        message = data['message']
 
-		csv_writer = csv.writer(database, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-		csv_writer.writerow([name,email,subject,message])
+        csv_writer = csv.writer(database, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        csv_writer.writerow([name,email,subject,message])
 
 
 
