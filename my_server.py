@@ -42,7 +42,10 @@ def submit_form():
             print(data)
             write_to_file(data, 'database.txt')
             write_to_csv(data, 'database.csv')
-            return redirect("/thank_you.html/" + data['name'])
+            if data is not None:
+                return redirect("/thank_you.html/" + data['name'])
+            else:
+                return redirect("/thank_you.html")
         else:
             return 'Something went wrong. Try again!'
     except:
