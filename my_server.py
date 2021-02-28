@@ -29,9 +29,8 @@ def my_home():
 
 
 @app.route('/<string:page_name>')  # es una ruta dinamica
-def thank_you(page_name, name):
-    print('name: ' + name + 'Page: ' + page_name)
-    return 'name: ' + name + 'Page: ' + page_name
+def thank_you(name):
+    return render_template('thank_you.html', name=name)
 
 
 # @app.route('/submit_form', methods=['POST', 'GET'])
