@@ -44,7 +44,8 @@ def submit_form():
             return redirect("/thank_you.html")
         else:
             return 'Something went wrong. Try again!'
-    except:
+    except ImportError:
+        print(ImportError.path)
         return 'algo salio mal (Except)'
 
 
