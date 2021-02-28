@@ -24,12 +24,26 @@ def my_home():
 
 
 # @app.route('/<string:page_name>')  # es una ruta dinamica
-# def html_page(page_name):
-#     return render_template(page_name)
+# def html_page(page_name, name):
+#     return(render_template(page_name))
+
 
 @app.route('/<string:page_name>')  # es una ruta dinamica
-def html_page(page_name):
-    return render_template(page_name)
+def thank_you(page_name, name):
+    print('name: ' + name + 'Page: ' + page_name)
+    return 'name: ' + name + 'Page: ' + page_name
+
+
+# @app.route('/submit_form', methods=['POST', 'GET'])
+# def submit_form():
+#     if request.method == 'POST':
+#         data = request.form.to_dict()  # obtenemos los datos en formato de dictionary
+#         print(data)
+#         write_to_file(data, 'database.txt')
+#         write_to_csv(data, 'database.csv')
+#         return redirect('thank_you.html')
+#     else:
+#         return 'Something went wrong. Try again!'
 
 
 @app.route('/submit_form', methods=['POST', 'GET'])
@@ -39,7 +53,7 @@ def submit_form():
         print(data)
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
-        return redirect('thank_you.html')
+        return redirect(url_for('thank_you)', name=data['name']))
     else:
         return 'Something went wrong. Try again!'
 
