@@ -11,25 +11,21 @@
 # COMANDO PARA SETEAR la aPP DEL SERVIDOR --> $env:FLASK_APP = "nombre_app.py"
 # COMANDO PARA PONER EN MODO DEBUG --> $env:FLASK_ENV = "development"
 # COMANDO PARA INICIAR SERVIDOR --> flask run
-from flask import Flask, render_template, redirect, send_from_directory, request
+from flask import Flask, render_template, redirect, send_from_directory, request, url_for
 import csv
 import os
-
-data = dict
 
 app = Flask(__name__)  # instanciamos una app en base a la clase FLask
 print(__name__)  # __name__ es igual al __main__
 
 
-@app.route('/')  # SIEMPRE DDEBE ESTAR 
+@app.route('/')  # SIEMPRE DDEBE ESTAR
 def my_home():
     return render_template('index_port.html')
 
 
-@app.route('/<string:page_name>')  # es una ruta dinamica
+@app.route('/<string:page_name>/<string:name>')  # es una ruta dinamica
 def html_page(page_name, name='jorgelin'):
-    if len(data) > 0:
-        name = data['name']
     return render_template(page_name, name=name)
 
 
@@ -40,7 +36,7 @@ def submit_form():
         print(data)
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
-        return redirect('/thank_you.html')
+        return redirect("/thank_you.html/" + data['name'])
     else:
         return 'Something went wrong. Try again!'
 
