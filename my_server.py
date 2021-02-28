@@ -28,6 +28,11 @@ def html_page(page_name):
     return render_template(page_name)
 
 
+@app.route('/<string:page_name>/<string:username')  # es una ruta dinamica
+def html_page(page_name, username=None):
+    return render_template(page_name, name=username)
+
+
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
     if request.method == 'POST':
@@ -35,7 +40,11 @@ def submit_form():
         print(data)
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
-        return redirect("/thank_you.html/")
+        if data['name'].lenght > 0:
+            url_target = 'thank_you.html/'+data['name']
+        else:
+            url_target = '/thank_you.html'
+        return redirect(url_target)
     else:
         return 'Something went wrong. Try again!'
 
