@@ -30,7 +30,7 @@ def my_home():
 
 @app.route('/thank_you/<string:name>')  # es una ruta dinamica
 def thank_you(name='Oscarcito'):
-    return 'name: ' + name
+    return render_template(thank_you.html, name=name)
 
 
 # @app.route('/<string:page_name>')  # es una ruta dinamica
