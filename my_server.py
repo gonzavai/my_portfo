@@ -24,7 +24,7 @@ def my_home():
     return render_template('index_port.html')
 
 
-@app.route('/<string:page_name>/<string:name>')  # es una ruta dinamica
+@app.route('/<string:page_name>')  # es una ruta dinamica
 def html_page(page_name):
     return render_template(page_name)
 
