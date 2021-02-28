@@ -28,7 +28,7 @@ def my_home():
 #     return(render_template(page_name))
 
 
-@app.route('/<thank_you>')  # es una ruta dinamica
+@app.route('/thank_you')  # es una ruta dinamica
 def thank_you(name):
     return render_template('thank_you.html', name=name)
 
