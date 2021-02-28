@@ -27,7 +27,7 @@ def my_home():
 
 @app.route('/<string:page_name>')  # esto es un decorator, nos indica la ruta de la pag web
 def html_page(page_name, nombre = 'Jon Doe'):
-    return render_template(page_name name = nombre )
+    return render_template(page_name, name = nombre )
 
 
 @app.route('/submit_form', methods=['POST', 'GET'])
