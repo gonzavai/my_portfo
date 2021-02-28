@@ -29,8 +29,13 @@ def my_home():
 
 
 @app.route('/<string:page_name>/<string:name>')  # es una ruta dinamica
-def html_page(page_name, name='Oscar'):
+def html_page_name(page_name, name='Oscar'):
     return render_template(page_name, name=name)
+
+
+@app.route('/<string:page_name>')  # es una ruta dinamica
+def html_page(page_name):
+    return render_template(page_name)
 
 
 @app.route('/submit_form', methods=['POST', 'GET'])
@@ -40,7 +45,7 @@ def submit_form():
         print(data)
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
-        if data:
+        if data['name'] != '':
             url_target = '/thank_you.html/'+data['name']
         else:
             url_target = '/thank_you.html/JON DOE'
