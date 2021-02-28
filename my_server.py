@@ -15,6 +15,7 @@ from flask import Flask, render_template, redirect, send_from_directory, request
 import csv
 import os
 
+
 app = Flask(__name__)  # instanciamos una app en base a la clase FLask
 print(__name__)  # __name__ es igual al __main__
 
@@ -25,8 +26,8 @@ def my_home():
 
 
 @app.route('/<string:page_name>')  # esto es un decorator, nos indica la ruta de la pag web
-def html_page(page_name):
-    return render_template(page_name,name='francovich')
+def html_page(page_name, nombre = 'Jon Doe'):
+    return render_template(page_name name = nombre )
 
 
 @app.route('/submit_form', methods=['POST', 'GET'])
@@ -36,7 +37,7 @@ def submit_form():
         print(data)
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
-        return redirect('/thank_you.html')
+        return redirect('/thank_you.html'), name=data['name']
     else:
         return 'Something went wrong. Try again!'
 
