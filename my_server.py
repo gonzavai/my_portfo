@@ -11,7 +11,7 @@
 # COMANDO PARA SETEAR la aPP DEL SERVIDOR --> $env:FLASK_APP = "nombre_app.py"
 # COMANDO PARA PONER EN MODO DEBUG --> $env:FLASK_ENV = "development"
 # COMANDO PARA INICIAR SERVIDOR --> flask run
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, url_for
 import csv
 
 app = Flask(__name__)  # instanciamos una app en base a la clase FLask
@@ -28,9 +28,9 @@ def my_home():
 #     return render_template(page_name)
 
 
-@app.route('/<string:page_name>/<string:name>')  # es una ruta dinamica
-def html_page_name(page_name, name='Oscar'):
-    return render_template(page_name, name=name)
+@app.route('/thank_you/<string:name>')  # es una ruta dinamica
+def thank_you(name='Oscarcito'):
+    return render_template('name: ' + name)
 
 
 @app.route('/<string:page_name>')  # es una ruta dinamica
@@ -45,11 +45,7 @@ def submit_form():
         print(data)
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
-        if data['name'] != '':
-            url_target = '/thank_you.html/'+data['name']
-        else:
-            url_target = '/thank_you.html/JON DOE'
-        return redirect(url_target)
+        return redirect(url_for('thank_you', name=data['name']))
     else:
         return 'Something went wrong. Try again!'
 
