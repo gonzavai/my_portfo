@@ -40,10 +40,10 @@ def submit_form():
         print(data)
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
-        if data['name'].lenght > 0:
-            url_target = 'thank_you.html/'+data['name']
+        if data:
+            url_target = '/thank_you/'+data['name']+'.html'
         else:
-            url_target = '/thank_you.html'
+            url_target = '/thank_you/JON DOE.html'
         return redirect(url_target)
     else:
         return 'Something went wrong. Try again!'
