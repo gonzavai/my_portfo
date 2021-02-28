@@ -28,9 +28,9 @@ def html_page(page_name):
     return render_template(page_name)
 
 
-@app.route('/<string:page_name>/<string:username')  # es una ruta dinamica
-def html_page(page_name, username=None):
-    return render_template(page_name, name=username)
+@app.route('/<string:page_name>/<string:name')  # es una ruta dinamica
+def html_page(page_name, name=None):
+    return render_template(page_name, name=name)
 
 
 @app.route('/submit_form', methods=['POST', 'GET'])
