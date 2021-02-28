@@ -15,6 +15,7 @@ from flask import Flask, render_template, redirect, send_from_directory, request
 import csv
 import os
 
+data = None
 
 app = Flask(__name__)  # instanciamos una app en base a la clase FLask
 print(__name__)  # __name__ es igual al __main__
@@ -27,6 +28,8 @@ def my_home():
 
 @app.route('/<string:page_name>')  # es una ruta dinamica
 def html_page(page_name, name='jorgelin'):
+    if data is not None:
+        name = data['name']
     return render_template(page_name, name=name)
 
 
