@@ -20,14 +20,14 @@ app = Flask(__name__)  # instanciamos una app en base a la clase FLask
 print(__name__)  # __name__ es igual al __main__
 
 
-@app.route('/')  # esto es un decorator, nos indica la ruta de la pag web
+@app.route('/')  # SIEMPRE DDEBE ESTAR 
 def my_home():
     return render_template('index_port.html')
 
 
-@app.route('/<string:page_name>')  # esto es un decorator, nos indica la ruta de la pag web
-def html_page(page_name, nombre = 'Jon Doe'):
-    return render_template(page_name, name = nombre )
+@app.route('/<string:page_name>')  # es una ruta dinamica
+def html_page(page_name, name=data['name']):
+    return render_template(page_name, name=name)
 
 
 @app.route('/submit_form', methods=['POST', 'GET'])
@@ -37,8 +37,7 @@ def submit_form():
         print(data)
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
-        return redirect('/thank_you.html'), name=data['name']
-    else:
+        return redirect('/thank_you.html')
         return 'Something went wrong. Try again!'
 
 
