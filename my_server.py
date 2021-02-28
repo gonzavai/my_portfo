@@ -28,14 +28,14 @@ def my_home():
 #     return render_template(page_name)
 
 
-@app.route('/thank_you/<string:name>')  # es una ruta dinamica
-def thank_you(name='Oscarcito'):
-    return render_template('thank_you.html', name=name)
+@app.route('/<string:page_name>/<string:name>')  # es una ruta dinamica
+def thank_you(page_name=None, name=None):
+    return render_template(page_name, name=name)
 
 
-# @app.route('/<string:page_name>')  # es una ruta dinamica
-# def html_page(page_name):
-#     return render_template(page_name)
+@app.route('/<string:page_name>')  # es una ruta dinamica
+def html_page(page_name):
+    return render_template(page_name)
 
 
 @app.route('/submit_form', methods=['POST', 'GET'])
