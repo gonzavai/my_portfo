@@ -15,7 +15,7 @@ from flask import Flask, render_template, redirect, send_from_directory, request
 import csv
 import os
 
-data = None
+data = dict
 
 app = Flask(__name__)  # instanciamos una app en base a la clase FLask
 print(__name__)  # __name__ es igual al __main__
@@ -28,7 +28,7 @@ def my_home():
 
 @app.route('/<string:page_name>')  # es una ruta dinamica
 def html_page(page_name, name='jorgelin'):
-    if data is not None:
+    if len(data) > 0:
         name = data['name']
     return render_template(page_name, name=name)
 
@@ -67,10 +67,7 @@ def write_to_csv(data, fileName):
         message = data['message']
 
         csv_writer = csv.writer(database, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        csv_writer.writerow([name,email,subject,message])
-
-
-
+        csv_writer.writerow([name, email, subject, message])
 
 # @app.route('/bolt.ico')
 # def favicon():
