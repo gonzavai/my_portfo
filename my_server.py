@@ -23,9 +23,9 @@ def my_home():
     return render_template('index_port.html')
 
 
-@app.route('/<string:page_name>')  # es una ruta dinamica
-def html_page(page_name):
-    return render_template(page_name)
+# @app.route('/<string:page_name>')  # es una ruta dinamica
+# def html_page(page_name):
+#     return render_template(page_name)
 
 
 @app.route('/<string:page_name>/<string:name')  # es una ruta dinamica
@@ -41,9 +41,9 @@ def submit_form():
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
         if data:
-            url_target = '/thank_you/'+data['name']+'.html'
+            url_target = '/thank_you.html/'+data['name']
         else:
-            url_target = '/thank_you/JON DOE.html'
+            url_target = '/thank_you.html/JON DOE'
         return redirect(url_target)
     else:
         return 'Something went wrong. Try again!'
