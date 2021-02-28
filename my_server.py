@@ -28,25 +28,16 @@ def html_page(page_name):
     return render_template(page_name)
 
 
-@app.route('/<string:page_name>')  # es una ruta dinamica
-def html_page(page_name):
-    return render_template(page_name)
-
-
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
-    try:
-        if request.method == 'POST':
-            data = request.form.to_dict()  # obtenemos los datos en formato de dictionary
-            print(data)
-            write_to_file(data, 'database.txt')
-            write_to_csv(data, 'database.csv')
-            return redirect("/thank_you.html")
-        else:
-            return 'Something went wrong. Try again!'
-    except ImportError:
-        print(ImportError.path)
-        return 'algo salio mal (Except)'
+    if request.method == 'POST':
+        data = request.form.to_dict()  # obtenemos los datos en formato de dictionary
+        print(data)
+        write_to_file(data, 'database.txt')
+        write_to_csv(data, 'database.csv')
+        return redirect("/thank_you.html")
+    else:
+        return 'Something went wrong. Try again!'
 
 
 def write_to_file(data, fileName):
