@@ -28,6 +28,11 @@ def html_page(page_name):
     return render_template(page_name)
 
 
+@app.route('/gracias/<username>')  # ruta hacia el gracias
+def gracias(username):
+    return render_template('thank_you.html', name=username)
+
+
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
     if request.method == 'POST':
@@ -35,7 +40,8 @@ def submit_form():
         print(data)
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
-        return redirect('thank_you.html')
+        name = data['name']
+        return redirect(url_for('gracias', username=name))
     else:
         return 'Something went wrong. Try again!'
 
