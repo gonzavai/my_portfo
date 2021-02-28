@@ -28,8 +28,8 @@ def my_home():
 #     return render_template(page_name)
 
 
-@app.route('/<string:page_name>/<string:name')  # es una ruta dinamica
-def html_page(page_name, name=None):
+@app.route('/<string:page_name>/<string:name>')  # es una ruta dinamica
+def html_page(page_name, name='Oscar'):
     return render_template(page_name, name=name)
 
 
