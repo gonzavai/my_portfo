@@ -36,14 +36,17 @@ def html_page(page_name, name='jorgelin'):
 
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
-    if request.method == 'POST':
-        data = request.form.to_dict()  # obtenemos los datos en formato de dictionary
-        print(data)
-        write_to_file(data, 'database.txt')
-        write_to_csv(data, 'database.csv')
-        return redirect("/thank_you.html/" + data['name'])
-    else:
-        return 'Something went wrong. Try again!'
+    try:
+        if request.method == 'POST':
+            data = request.form.to_dict()  # obtenemos los datos en formato de dictionary
+            print(data)
+            write_to_file(data, 'database.txt')
+            write_to_csv(data, 'database.csv')
+            return redirect("/thank_you.html/" + data['name'])
+        else:
+            return 'Something went wrong. Try again!'
+    except:
+        return 'algo salio mal (Except)'
 
 
 def write_to_file(data, fileName):
