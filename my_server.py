@@ -26,7 +26,7 @@ def my_home():
 
 
 @app.route('/<string:page_name>')  # es una ruta dinamica
-def html_page(page_name, name=data['name']):
+def html_page(page_name, name='jorgelin'):
     return render_template(page_name, name=name)
 
 
@@ -38,6 +38,7 @@ def submit_form():
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
         return redirect('/thank_you.html')
+    else:
         return 'Something went wrong. Try again!'
 
 
