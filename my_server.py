@@ -26,7 +26,7 @@ def my_home():
 
 @app.route('/<string:page_name>')  # esto es un decorator, nos indica la ruta de la pag web
 def html_page(page_name):
-    return render_template(page_name)
+    return render_template(page_name, name = data['name'])
 
 
 @app.route('/submit_form', methods=['POST', 'GET'])
@@ -36,7 +36,7 @@ def submit_form():
         print(data)
         write_to_file(data, 'database.txt')
         write_to_csv(data, 'database.csv')
-        return redirect('/thank_you.html'), data['name']
+        return redirect('/thank_you.html')
     else:
         return 'Something went wrong. Try again!'
 
