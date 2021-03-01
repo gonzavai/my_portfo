@@ -1984,52 +1984,6 @@ input, select, textarea {
 				font-size: 6em;
 			}
 
-/* Iconos agregados por mi -- fabs*/
-
-	.fab {
-		text-decoration: none;
-		text-decoration: none;
-	}
-
-		.fab:before {
-			-moz-osx-font-smoothing: grayscale;
-			-webkit-font-smoothing: antialiased;
-			display: inline-block;
-			font-style: normal;
-			font-variant: normal;
-			text-rendering: auto;
-			line-height: 1;
-			text-transform: none !important;
-			font-family: 'Font Awesome 5 Free';
-			font-weight: 400;
-		}
-
-		.fab:before {
-			font-size: 1.25em;
-		}
-
-		.fab > .label {
-			display: none;
-		}
-
-		.fab.solid:before {
-			font-weight: 900;
-		}
-
-		.fab.brands:before {
-			font-family: 'Font Awesome 5 Brands';
-		}
-
-		.fab.featured {
-			color: #EA8A95;
-			display: block;
-			margin: 0 0 1.5em 0;
-			cursor: default;
-		}
-
-			.fab.featured:before {
-				font-size: 6em;
-			}
 
 /* Wrappers */
 
